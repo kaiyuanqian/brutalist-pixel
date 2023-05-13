@@ -6,6 +6,15 @@ body {
 
 .container {
     display: flex;
+    gap: 5vw;
+}
+
+.erase {
+    height: 4vmax;
+}
+
+.grid {
+    display: flex;
     flex-direction: column;
 }
 
