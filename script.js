@@ -12,9 +12,20 @@ function makeGrid() {
             square.style.border = '0.1vh solid black';
             square.style.width = '5vh';
             square.style.height = '5vh';
+
+            square.addEventListener('mouseover', () => {
+                square.style.border = '0.1vh solid #FFD93D';
+            });
+            square.addEventListener('mouseout', () => {
+                square.style.border = '0.1vh solid black';
+            });
             row.appendChild(square);
         }
     }
+}
+
+function highlightSquare() {
+
 }
 
 makeGrid();
