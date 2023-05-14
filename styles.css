@@ -9,13 +9,20 @@ body {
     gap: 5vw;
 }
 
-.erase {
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+button {
     height: 4vmax;
 }
 
 .grid {
     display: flex;
     flex-direction: column;
+    border: 0.1vh solid black;
 }
 
 .row {

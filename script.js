@@ -11,24 +11,32 @@ function makeGrid() {
         for (let j = 0; j < 16; j++) {
             const square = document.createElement('div');
             square.classList.add('square');
-            square.style.padding = 0;
+            square.style.padding = '0.1vh';
             square.style.margin = 0;
-            square.style.border = '0.1vh solid black';
+            square.style.border = 0;
             square.style.width = '5vh';
             square.style.height = '5vh';
+            square.style.boxShadow = 'inset 0 0 0 0.1vh black';
 
             square.addEventListener('mouseover', () => {
-                square.style.border = '0.1vh solid #FFD93D';
+                square.style.boxShadow = 'inset 0 0 0 0.1vh #FFD93D';
+                
             });
             square.addEventListener('mouseout', () => {
-                square.style.border = '0.1vh solid black';
+                const gridStatus = document.querySelector('.gridlines');
+                if (gridStatus.classList.contains('on')) {
+                    square.style.boxShadow = 'inset 0 0 0 0.1vh black';
+                } else {
+                    square.style.boxShadow = 'none';
+                }
+                
             });
             row.appendChild(square);
         }
     }
 }
 
-function toggleMode() {
+function toggleErase() {
     const erase = document.querySelector('.erase');
     if (erase.classList.contains('off')) {
         erase.classList.remove('off');
@@ -60,10 +68,28 @@ function toggleMode() {
     
 }
 
+function toggleGrid() {
+    const gridButton = document.querySelector('.gridlines');
+    if (gridButton.classList.contains('on')) {
+        gridButton.classList.remove('on');
+
+        const squares = document.querySelectorAll('.square');
+        squares.forEach(square => square.style.boxShadow = 'none');
+    } else {
+        gridButton.classList.add('on');
+
+        const squares = document.querySelectorAll('.square');
+        squares.forEach(square => square.style.boxShadow = 'inset 0 0 0 0.1vh black');
+    }
+}
+
 makeGrid();
 
 const erase = document.querySelector('.erase');
-erase.addEventListener('click', toggleMode);
+erase.addEventListener('click', toggleErase);
+
+const gridButton = document.querySelector('.gridlines');
+gridButton.addEventListener('click', toggleGrid);
 
 const squares = document.querySelectorAll('.square');
 squares.forEach(square => square.addEventListener('mousedown', () => {
